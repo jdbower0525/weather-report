@@ -1,5 +1,4 @@
 import requests
-import json
 
 # key id = 6747d8c3dbb46cec
 
@@ -21,13 +20,12 @@ class CurrentConditions:
         humidity = results["current_observation"]["relative_humidity"]
         wind_strength = results["current_observation"]["wind_string"]
         print("""
-    Your City: {}
-    Weather: {}
-    Temperature: {}
-    Humidity: {}
-    Wind Strength: {}
+Your City: {}
+Weather: {}
+Temperature: {}
+Humidity: {}
+Wind Strength: {}
     """.format(location, weather, temp, humidity, wind_strength))
-
 
 
 class TenDayForecast:
@@ -42,13 +40,13 @@ class TenDayForecast:
         r = requests.get(self.url)
         results = r.json()
         i = 0
-        while i < 20 :
+        while i < 20:
             daily = results["forecast"]["txt_forecast"]["forecastday"][i]
             period = daily['title']
             forecast = daily['fcttext']
             print("""
-    Period: {}
-    Forecast: {}
+Period: {}
+Forecast: {}
             """.format(period, forecast))
             i += 1
 
@@ -84,7 +82,12 @@ class Alerts:
         if len(results["alerts"]) == 0:
             print("No severe weather alerts for your area. ")
         else:
-            print(json.dumps(r.json(), indent=4))
+            print(results['alerts'][0]['expires'])
+            print('\n')
+            message = results['alerts'][0]['message']
+            strip_message = message.strip('\n')
+            print(strip_message)
+            print('\n')
 
 
 class Hurricane:
