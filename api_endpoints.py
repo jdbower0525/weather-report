@@ -14,7 +14,20 @@ class CurrentConditions:
 
     def current_conditions(self):
         r = requests.get(self.url)
-        print(json.dumps(r.json(), indent=4))
+        results = r.json()
+        location = results["current_observation"]["display_location"]["full"]
+        weather = results["current_observation"]["weather"]
+        temp = results["current_observation"]["temperature_string"]
+        humidity = results["current_observation"]["relative_humidity"]
+        wind_strength = results["current_observation"]["wind_string"]
+        print("""
+    Your City: {}
+    Weather: {}
+    Temperature: {}
+    Humidity: {}
+    Wind Strength: {}
+    """.format(location, weather, temp, humidity, wind_strength))
+
 
 
 class TenDayForecast:
