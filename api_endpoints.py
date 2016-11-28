@@ -40,7 +40,17 @@ class TenDayForecast:
 
     def tenday_forecast(self):
         r = requests.get(self.url)
-        print(json.dumps(r.json(), indent=4))
+        results = r.json()
+        i = 0
+        while i < 20 :
+            daily = results["forecast"]["txt_forecast"]["forecastday"][i]
+            period = daily['title']
+            forecast = daily['fcttext']
+            print("""
+    Period: {}
+    Forecast: {}
+            """.format(period, forecast))
+            i += 1
 
 
 class SunRiseSunSet:
