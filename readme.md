@@ -4,7 +4,8 @@
 Weather report is a program meant to familiarize us with the process of
 pulling data from an API and formatting it in a way that is readable to user.
 To run the program, run the <b>pip3 install requirements.txt</b> command to
-set up the background functions you'll need.  From here, you will be prompted
+set up the background functions you'll need.  Once that is done, run the
+<b>weather.py</b> command to start the program. From here, you will be prompted
 to supply a zip code that the program will look up the weather for.
 
 From there, you'll be prompted for which kind of report you want the program
