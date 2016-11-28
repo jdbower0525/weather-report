@@ -1,6 +1,8 @@
 from api_endpoints import CurrentConditions
 from api_endpoints import TenDayForecast
 from api_endpoints import SunRiseSunSet
+from api_endpoints import Alerts
+from api_endpoints import Hurricane
 
 
 def redirect():
@@ -29,6 +31,18 @@ def sunrise_sunset(zip_code):
     redirect()
 
 
+def alerts(zip_code):
+    alert = Alerts(zip_code)
+    alert.alert()
+    redirect()
+
+
+def hurricane():
+    hurricane = Hurricane()
+    hurricane.hurricane()
+    redirect()
+
+
 def main():
     zip_code = input("What zip code would you like to find the weather for? ")
     options = input("""
@@ -42,9 +56,12 @@ What report would you like?
 >>> """)
     if options == '1':
         current_conditions(zip_code)
-    if options == '2':
+    elif options == '2':
         tendayforecast(zip_code)
-    if options == '3':
+    elif options == '3':
         sunrise_sunset(zip_code)
-
+    elif options == '4':
+        alerts(zip_code)
+    elif options == '5':
+        hurricane()
 main()
