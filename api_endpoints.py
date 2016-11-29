@@ -99,5 +99,8 @@ class Hurricane:
     def hurricane(self):
         r = requests.get(self.url)
         results = r.json()
-        currenthurricane = results['currenthurricane']
-        print(currenthurricane[0]['stormInfo']["stormName_Nice"])
+        try:
+            currenthurricane = results['currenthurricane']
+            print(currenthurricane[0]['stormInfo']["stormName_Nice"])
+        except:
+            print("There are no hurricanes currently.")
